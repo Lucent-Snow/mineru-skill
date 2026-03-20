@@ -1,0 +1,19 @@
+# MinerU 账号配置
+# 默认复制到 ~/.mineru/accounts.yaml 并填入真实信息
+# 如果设置了 MINERU_DATA_DIR，则复制到 $MINERU_DATA_DIR/accounts.yaml
+
+accounts:
+  - name: "主账号"
+    email: "your_email@example.com"
+    password: "your_password"
+
+  - name: "备用账号"
+    email: "another_email@example.com"
+    password: "another_password"
+
+# 说明：
+# - name: 账号备注名称（仅用于显示）
+# - email: MinerU 登录邮箱
+# - password: 登录密码
+# - 支持配置多个账号，系统会随机选择 Token 实现负载均衡
+# - Token 有效期约 90 天
