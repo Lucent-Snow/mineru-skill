@@ -1,0 +1,17 @@
+scripts/.venv/
+scripts/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.mineru/
+accounts.yaml
+all_tokens.json
+assets/accounts.yaml
+assets/all_tokens.json
+*_images/
+*_result/
+result.zip
+.DS_Store
+Thumbs.db
