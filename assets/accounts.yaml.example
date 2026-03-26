@@ -1,6 +1,5 @@
 # MinerU 账号配置
-# 默认复制到 ~/.mineru/accounts.yaml 并填入真实信息
-# 如果设置了 MINERU_DATA_DIR，则复制到 $MINERU_DATA_DIR/accounts.yaml
+# 复制此文件到 ~/.mineru/accounts.yaml 并填入真实信息
 
 accounts:
   - name: "主账号"

@@ -11,43 +11,31 @@ description: |
 
 通过 MinerU API 将 PDF/DOCX/PPTX/图片/HTML 转换为 Markdown + 图片。
 
-## 目录约定
+## 脚本路径
 
-- skill 根目录: 当前 `SKILL.md` 所在目录
-- 脚本目录: `<skill-root>/scripts`
-- Python 虚拟环境: `<skill-root>/scripts/.venv`
-- 默认数据目录: `~/.mineru`
-- 可选环境变量: `MINERU_DATA_DIR`，可覆盖默认数据目录
+脚本目录: `C:\Users\William\.claude\skills\mineru-skill\scripts`
 
-如果你是在仓库根目录直接使用本 skill，下面命令可以直接运行：
+Python 解释器（安装环境后）:
 
-```bash
-python scripts/setup_env.py
+```
+C:\Users\William\.claude\skills\mineru-skill\scripts\.venv\Scripts\python.exe
 ```
 
-环境初始化完成后，Python 解释器位于：
-
-```text
-Windows: scripts\.venv\Scripts\python.exe
-Unix:    scripts/.venv/bin/python3
-```
-
-以下用 `$PY` 代指该解释器，`$SD` 代指脚本目录。
+以下用 `$PY` 代指上述 Python 路径，`$SD` 代指脚本目录。
 
 ## 环境准备
 
-首次使用需完成以下步骤：
+首次使用需完成以下步骤:
 
 ```bash
 # 1. 初始化环境（创建 venv、安装依赖、安装 Playwright 浏览器）
-python $SD/setup_env.py
+python $SD\setup_env.py
 
 # 2. 编辑账户配置（填入 MinerU 账号密码）
-#    默认文件位置: ~/.mineru/accounts.yaml
-#    如果设置了 MINERU_DATA_DIR，则位于 $MINERU_DATA_DIR/accounts.yaml
+#    文件位置: C:\Users\William\.mineru\accounts.yaml
 
 # 3. 批量登录获取 Token
-$PY $SD/batch_login.py
+$PY $SD\batch_login.py
 ```
 
 ## 核心工作流
@@ -64,7 +52,7 @@ $PY $SD/batch_login.py
 ### check_tokens.py — 检查 Token 状态
 
 ```bash
-$PY $SD/check_tokens.py
+$PY $SD\check_tokens.py
 ```
 
 退出码: 0=全部有效，1=有过期或缺失。
@@ -73,10 +61,10 @@ $PY $SD/check_tokens.py
 
 ```bash
 # headless 模式（默认，无需显示器）
-$PY $SD/batch_login.py
+$PY $SD\batch_login.py
 
 # 调试模式（打开浏览器界面）
-$PY $SD/batch_login.py --headed
+$PY $SD\batch_login.py --headed
 ```
 
 自动完成: 登录 MinerU → 删除旧 Token → 创建新 Token → 保存到 `~/.mineru/all_tokens.json`。
@@ -85,16 +73,16 @@ $PY $SD/batch_login.py --headed
 
 ```bash
 # 处理本地文件（输出到源文件同目录）
-$PY $SD/process_document.py <文件路径>
+$PY $SD\process_document.py <文件路径>
 
 # 指定输出目录
-$PY $SD/process_document.py <文件路径> --output-dir <目录>
+$PY $SD\process_document.py <文件路径> --output-dir <目录>
 
 # 指定模型
-$PY $SD/process_document.py <文件路径> --model vlm
+$PY $SD\process_document.py <文件路径> --model vlm
 
 # 处理 URL
-$PY $SD/process_document.py https://example.com/doc.pdf
+$PY $SD\process_document.py https://example.com/doc.pdf
 ```
 
 支持格式: PDF, DOC, DOCX, PPT, PPTX, PNG, JPG, JPEG, HTML。
@@ -104,16 +92,16 @@ $PY $SD/process_document.py https://example.com/doc.pdf
 
 ```bash
 # 处理目录下所有 PDF
-$PY $SD/process_batch.py <目录>
+$PY $SD\process_batch.py <目录>
 
 # 指定文件类型
-$PY $SD/process_batch.py <目录> --pattern "*.docx"
+$PY $SD\process_batch.py <目录> --pattern "*.docx"
 
 # 控制并发数
-$PY $SD/process_batch.py <目录> --max-workers 3
+$PY $SD\process_batch.py <目录> --max-workers 3
 
 # 递归扫描子目录
-$PY $SD/process_batch.py <目录> --recursive
+$PY $SD\process_batch.py <目录> --recursive
 ```
 
 ## 常见场景
@@ -131,5 +119,5 @@ $PY $SD/process_batch.py <目录> --recursive
 - 文件大小限制 200MB，超过会报错
 - 模型自动选择: PDF/DOC/PPT/图片 → vlm，HTML → MinerU-HTML
 - Token 有效期约 90 天，过期需运行 batch_login.py 续期
-- 数据目录默认是 `~/.mineru/`，可通过 `MINERU_DATA_DIR` 自定义
+- 数据目录: `C:\Users\William\.mineru\`（accounts.yaml、all_tokens.json）
 - 详细 API 参数和错误排查参考 `references/api-reference.md`
